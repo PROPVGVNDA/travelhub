@@ -3,10 +3,15 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-nativ
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 export const SignUpPasswordScreen = ({ navigation }) => {
+    const [password, setPassword] = useState('');
     const [passwordVisible, setPasswordVisible] = useState(false);
 
     const togglePasswordVisibility = () => {
         setPasswordVisible(!passwordVisible);
+    };
+
+    const isPasswordValid = () => {
+        return password.length >= 1;
     };
 
     return (
@@ -16,21 +21,31 @@ export const SignUpPasswordScreen = ({ navigation }) => {
             </View>
             <Text style={styles.prompt}>Create a password</Text>
             <View style={styles.inputContainer}>
-                <TextInput style={styles.input} placeholder="Enter your password" placeholderTextColor="#6a6a6a" secureTextEntry={!passwordVisible} />
+                <TextInput 
+                    style={styles.input} 
+                    placeholder="Enter your password" 
+                    placeholderTextColor="#6a6a6a" 
+                    secureTextEntry={!passwordVisible}
+                    onChangeText={setPassword}
+                    value={password}
+                />
                 <TouchableOpacity onPress={togglePasswordVisibility} style={styles.icon}>
                     <Icon name={passwordVisible ? 'eye' : 'eye-slash'} size={25} color="#fff" />
                 </TouchableOpacity>
             </View>
             <Text style={styles.notice}>Use at least 10 characters.</Text>
             <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('SignUpName')}>
+                <TouchableOpacity 
+                    style={[styles.button, !isPasswordValid() && styles.disabledButton]} 
+                    onPress={() => isPasswordValid() && navigation.navigate('SignUpName')}
+                    disabled={!isPasswordValid()}
+                >
                     <Text style={styles.buttonText}>Next</Text>
                 </TouchableOpacity>
             </View>
         </View>
     );
 };
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -92,6 +107,9 @@ const styles = StyleSheet.create({
         paddingHorizontal: 30,
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    disabledButton: {
+        backgroundColor: '#ccc',
     },
     buttonText: {
         color: '#151515',

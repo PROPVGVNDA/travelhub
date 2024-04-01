@@ -1,22 +1,41 @@
-import React from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 
 export const SignUpEmailScreen = ({ navigation }) => {
+    const [email, setEmail] = useState('');
+
+    const isValidEmail = (email) => {
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return true;
+        return regex.test(email);
+    };
+
     return (
         <View style={styles.container}>
             <View style={styles.header}>
                 <Text style={styles.title}>Create account</Text>
             </View>
             <Text style={styles.prompt}>What's your email?</Text>
-            <TextInput style={styles.input} placeholder="Enter your email" placeholderTextColor="#6a6a6a" />
+            <TextInput
+                style={styles.input}
+                placeholder="Enter your email"
+                placeholderTextColor="#6a6a6a"
+                onChangeText={(text) => setEmail(text)}
+                value={email}
+            />
             <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('SignUpPassword')}>
+                <TouchableOpacity
+                    style={[styles.button, !isValidEmail(email) && styles.disabledButton]}
+                    onPress={() => isValidEmail(email) && navigation.navigate('SignUpPassword')}
+                    disabled={!isValidEmail(email)}
+                >
                     <Text style={styles.buttonText}>Next</Text>
                 </TouchableOpacity>
             </View>
         </View>
     );
 };
+
 
 const styles = StyleSheet.create({
     container: {
@@ -64,6 +83,9 @@ const styles = StyleSheet.create({
         paddingHorizontal: 30,
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    disabledButton: {
+        backgroundColor: '#ccc',
     },
     buttonText: {
         color: '#151515',

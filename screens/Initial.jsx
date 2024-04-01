@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 export const InitialScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>ByByte</Text>
+      <Text style={styles.title}>TravelHub</Text>
       <View style={styles.buttonsContainer}>
         <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Login')}>
           <Text style={styles.buttonText}>Log In</Text>
