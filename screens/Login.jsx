@@ -27,7 +27,11 @@ export const LoginScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
+        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+          <Icon name="arrow-left" size={25} color="#fff" />
+        </TouchableOpacity>
         <Text style={styles.title}>Log in</Text>
+        <View style={{ width: 25 }}></View>
       </View>
       <View style={styles.promptContainer}>
         <Text style={styles.prompt}>Email</Text>
@@ -81,12 +85,14 @@ const styles = StyleSheet.create({
   header: {
     width: '100%',
     alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 20,
   },
   title: {
     color: '#fff',
     fontSize: 16,
     fontWeight: 'bold',
-    marginBottom: 20
   },
   promptContainer: {
     paddingBottom: 15,

@@ -19,7 +19,7 @@ export default function App() {
   return (
     <MainProvider>
       <NavigationContainer>
-        <Stack.Navigator screenOptions={{ headerShown: true }}>
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen name="Initial" component={InitialScreen} />
           <Stack.Screen name="SignUpEmail" component={SignUpEmailScreen} />
           <Stack.Screen name="SignUpPassword" component={SignUpPasswordScreen} />

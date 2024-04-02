@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { MainContext } from '../MainContext.js';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export const LogoutScreen = ({ navigation }) => {
     const { logoutUser } = useContext(MainContext);
@@ -12,6 +13,9 @@ export const LogoutScreen = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
+            <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+                <Icon name="arrow-left" size={25} color="#fff" />
+            </TouchableOpacity>
             <View style={styles.notice}>
                 <Text style={styles.titleNotice}>Press Continue to log out</Text>
                 <TouchableOpacity style={styles.button}>
@@ -29,6 +33,12 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start',
         paddingHorizontal: 20,
         paddingTop: 70
+    },
+    backButton: {
+        position: 'absolute',
+        top: 75,
+        left: 25,
+        zIndex: 1,
     },
     notice: {
         flexGrow: 1,

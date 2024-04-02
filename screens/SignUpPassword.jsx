@@ -18,14 +18,18 @@ export const SignUpPasswordScreen = ({ route, navigation }) => {
     return (
         <View style={styles.container}>
             <View style={styles.header}>
+                <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+                    <Icon name="arrow-left" size={25} color="#fff" />
+                </TouchableOpacity>
                 <Text style={styles.title}>Create account</Text>
+                <View style={{ width: 25 }}></View>
             </View>
             <Text style={styles.prompt}>Create a password</Text>
             <View style={styles.inputContainer}>
-                <TextInput 
-                    style={styles.input} 
-                    placeholder="Enter your password" 
-                    placeholderTextColor="#6a6a6a" 
+                <TextInput
+                    style={styles.input}
+                    placeholder="Enter your password"
+                    placeholderTextColor="#6a6a6a"
                     secureTextEntry={!passwordVisible}
                     onChangeText={setPassword}
                     value={password}
@@ -36,9 +40,9 @@ export const SignUpPasswordScreen = ({ route, navigation }) => {
             </View>
             <Text style={styles.notice}>Use at least 10 characters.</Text>
             <View style={styles.buttonContainer}>
-                <TouchableOpacity 
-                    style={[styles.button, !isPasswordValid() && styles.disabledButton]} 
-                    onPress={() => isPasswordValid() && navigation.navigate('SignUpName', {userEmail: userEmail, userPassword: password})}
+                <TouchableOpacity
+                    style={[styles.button, !isPasswordValid() && styles.disabledButton]}
+                    onPress={() => isPasswordValid() && navigation.navigate('SignUpName', { userEmail: userEmail, userPassword: password })}
                     disabled={!isPasswordValid()}
                 >
                     <Text style={styles.buttonText}>Next</Text>
@@ -65,12 +69,14 @@ const styles = StyleSheet.create({
     header: {
         width: '100%',
         alignItems: 'center',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginBottom: 20,
     },
     title: {
         color: '#fff',
         fontSize: 16,
         fontWeight: 'bold',
-        marginBottom: 20
     },
     prompt: {
         color: 'white',

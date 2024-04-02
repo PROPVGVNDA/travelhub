@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export const SignUpEmailScreen = ({ navigation }) => {
     const [email, setEmail] = useState('');
@@ -13,7 +14,11 @@ export const SignUpEmailScreen = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <View style={styles.header}>
+                <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+                    <Icon name="arrow-left" size={25} color="#fff" />
+                </TouchableOpacity>
                 <Text style={styles.title}>Create account</Text>
+                <View style={{ width: 25 }}></View>
             </View>
             <Text style={styles.prompt}>What's your email?</Text>
             <TextInput
@@ -48,12 +53,14 @@ const styles = StyleSheet.create({
     header: {
         width: '100%',
         alignItems: 'center',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginBottom: 20,
     },
     title: {
         color: '#fff',
         fontSize: 16,
         fontWeight: 'bold',
-        marginBottom: 20
     },
     prompt: {
         color: 'white',

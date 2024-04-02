@@ -13,6 +13,7 @@ import {
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { MainContext } from '../MainContext.js';
 import { Ticket } from '../Ticket.js';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 function generateRandomDouble() {
   var random = Math.random() * (300 - 100) + 100;
@@ -53,7 +54,7 @@ export const BookScreen = ({ navigation }) => {
   };
 
   const handleOkButton = () => {
-    setModalVisible(false); 
+    setModalVisible(false);
     resetForm();
   };
 
@@ -138,6 +139,11 @@ export const BookScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <View style={styles.arrowHeader}>
+        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+          <Icon name="arrow-left" size={20} color="#fff" />
+        </TouchableOpacity>
+      </View>
       <View style={styles.header}>
         <Text style={styles.title}>Hello, Mykyta</Text>
       </View>
@@ -289,6 +295,11 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     paddingTop: 70,
     paddingHorizontal: 20,
+  },
+  arrowHeader: {
+    width: '100%',
+    marginBottom: 20,
+    alignItems: 'flex-start',
   },
   bookingCard: {
     marginTop: 12,

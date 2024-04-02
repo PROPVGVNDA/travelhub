@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 import { MainContext } from '../MainContext';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const isSaveButtonEnabled = () => {
   return false
@@ -14,6 +15,11 @@ export const ProfileScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <View style={styles.header}>
+        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+          <Icon name="arrow-left" size={20} color="#fff" />
+        </TouchableOpacity>
+      </View>
       <View style={styles.inputContainer}>
         <Text style={styles.label}>Name</Text>
         <TextInput
@@ -28,14 +34,6 @@ export const ProfileScreen = ({ navigation }) => {
           value={userEmail}
         />
       </View>
-      {/* <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          style={[styles.button, !isSaveButtonEnabled() && styles.disabledSaveButton]}
-          disabled={!isSaveButtonEnabled()}
-        >
-          <Text style={styles.buttonText}>Save</Text>
-        </TouchableOpacity>
-      </View> */}
     </View>
   );
 };
@@ -47,6 +45,11 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     paddingTop: 70,
     paddingHorizontal: 20
+  },
+  header: {
+    width: '100%',
+    marginBottom: 30,
+    alignItems: 'flex-start',
   },
   inputContainer: {
     flexDirection: 'row',
@@ -64,7 +67,6 @@ const styles = StyleSheet.create({
   },
   input: {
     width: '80%',
-    //        height: 50,
     width: '100%',
     color: 'white',
     fontSize: 16,

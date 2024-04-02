@@ -1,12 +1,18 @@
 import React, { useContext } from 'react';
 import { View, Text, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
 import { MainContext } from '../MainContext';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
-export const CartScreen = () => {
+export const CartScreen = ({ navigation }) => {
   const { cart } = useContext(MainContext);
 
   return (
     <View style={styles.container}>
+      <View style={styles.header}>
+        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+          <Icon name="arrow-left" size={25} color="#fff" />
+        </TouchableOpacity>
+      </View>
       <FlatList
         style={styles.list}
         data={cart}
@@ -49,6 +55,11 @@ const styles = StyleSheet.create({
     paddingVertical: 70,
     paddingHorizontal: 20,
     backgroundColor: '#151515',
+  },
+  header: {
+    width: '100%',
+    marginBottom: 30,
+    alignItems: 'flex-start',
   },
   list: {
     width: '80%',
