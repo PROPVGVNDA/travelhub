@@ -5,7 +5,7 @@ const buttons = [
   { title: 'Travel', navigateTo: 'Book' },
   { title: 'Cart', navigateTo: 'Cart' },
   { title: 'Profile', navigateTo: 'Profile' },
-  { title: 'Log out', navigateTo: 'Profile' },
+  { title: 'Log out', navigateTo: 'Logout' },
 ];
 
 export const HomeScreen = ({ navigation }) => {

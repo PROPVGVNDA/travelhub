@@ -6,12 +6,14 @@ import { MainContext } from '../MainContext.js';
 export const SignUpFinishScreen = ({ route, navigation }) => {
   const { userEmail, userPassword, userFullName } = route.params;
   const { addUser } = useContext(MainContext);
+  const { loginUser } = useContext(MainContext);
 
   const handleSignUp = () => {
     const newUser = new User(
       userFullName, userEmail, userPassword
     );
     addUser(newUser);
+    loginUser(newUser);
     navigation.navigate('Home');
   };
 
