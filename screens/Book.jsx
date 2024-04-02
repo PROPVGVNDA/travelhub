@@ -61,7 +61,7 @@ export const BookScreen = ({ navigation }) => {
   const isAddToCartButtonEnabled = () => {
     const isValidFromCity = fromInput;
     const isValidToCity = toInput;
-    const isPassengerCountValid = adultCount > 0 || childCount > 0;
+    const isPassengerCountValid = adultCount > 0 && childCount >= 0;
 
     return isValidFromCity && isValidToCity && isPassengerCountValid;
   };

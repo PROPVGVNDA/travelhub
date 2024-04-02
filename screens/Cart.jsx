@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 export const CartScreen = ({ navigation }) => {
   const { cart } = useContext(MainContext);
+  const isCartEmpty = cart.length === 0;
 
   return (
     <View style={styles.container}>
@@ -39,7 +40,10 @@ export const CartScreen = ({ navigation }) => {
         )}
       />
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity
+          style={[styles.button, isCartEmpty && styles.disabledButton]}
+          disabled={isCartEmpty}
+        >
           <Text style={styles.buttonText}>Checkout</Text>
         </TouchableOpacity>
       </View>
@@ -80,6 +84,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  disabledButton: {
+    backgroundColor: '#ccc',
   },
   buttonText: {
     color: '#151515',
