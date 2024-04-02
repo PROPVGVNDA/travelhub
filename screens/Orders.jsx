@@ -3,16 +3,8 @@ import { View, Text, FlatList, StyleSheet, TouchableOpacity } from 'react-native
 import { MainContext } from '../MainContext';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-export const CartScreen = ({ navigation }) => {
-  const { cart, clearCart } = useContext(MainContext);
-  const { orders, addToOrders } = useContext(MainContext);
-  const isCartEmpty = cart.length === 0;
-
-  const handleCheckout = () => {
-    cart.forEach(item => addToOrders(item));
-    clearCart();
-    navigation.navigate('Home');
-  }
+export const OrdersScreen = ({ navigation }) => {
+  const { orders } = useContext(MainContext);
 
   return (
     <View style={styles.container}>
@@ -23,7 +15,7 @@ export const CartScreen = ({ navigation }) => {
       </View>
       <FlatList
         style={styles.list}
-        data={cart}
+        data={orders}
         keyExtractor={(item, index) => 'key' + index}
         renderItem={({ item, index }) => (
           <View
@@ -46,15 +38,6 @@ export const CartScreen = ({ navigation }) => {
           </View>
         )}
       />
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          style={[styles.button, isCartEmpty && styles.disabledButton]}
-          disabled={isCartEmpty}
-          onPress={handleCheckout}
-        >
-          <Text style={styles.buttonText}>Checkout</Text>
-        </TouchableOpacity>
-      </View>
     </View>
   );
 };
@@ -78,27 +61,5 @@ const styles = StyleSheet.create({
   },
   listText: {
     color: '#000',
-  },
-  buttonContainer: {
-    width: '100%',
-    marginVertical: 40,
-    alignItems: 'center',
-  },
-  button: {
-    backgroundColor: '#ff9000',
-    width: '90%',
-    borderRadius: 25,
-    paddingVertical: 15,
-    paddingHorizontal: 30,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  disabledButton: {
-    backgroundColor: '#ccc',
-  },
-  buttonText: {
-    color: '#151515',
-    fontWeight: 'bold',
-    fontSize: 16,
-  },
+  }
 });

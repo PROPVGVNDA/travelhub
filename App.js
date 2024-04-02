@@ -11,6 +11,7 @@ import { BookScreen } from './screens/Book';
 import { CartScreen } from './screens/Cart';
 import { ProfileScreen } from './screens/Profile';
 import { LogoutScreen } from './screens/Logout';
+import { OrdersScreen } from './screens/Orders';
 import { MainProvider } from './MainContext';
 
 const Stack = createNativeStackNavigator();
@@ -31,6 +32,7 @@ export default function App() {
           <Stack.Screen name="Cart" component={CartScreen} />
           <Stack.Screen name="Profile" component={ProfileScreen} />
           <Stack.Screen name="Logout" component={LogoutScreen} />
+          <Stack.Screen name="Orders" component={OrdersScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </MainProvider>

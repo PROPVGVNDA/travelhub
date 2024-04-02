@@ -4,11 +4,20 @@ export const MainContext = createContext();
 
 export const MainProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
+  const [orders, setOrders] = useState([]);
   const [users, setUsers] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
 
   const addToCart = (ticket) => {
     setCart((currentCart) => [...currentCart, ticket]);
+  };
+
+  const clearCart = (ticket) => {
+    setCart((currentCart) => []);
+  };
+
+  const addToOrders = (ticket) => {
+    setOrders((currentOrders) => [...currentOrders, ticket]);
   };
 
   const addUser = user => {
@@ -24,7 +33,7 @@ export const MainProvider = ({ children }) => {
   };
 
   return (
-    <MainContext.Provider value={{ cart, addToCart, users, addUser, currentUser, loginUser, logoutUser }}>
+    <MainContext.Provider value={{ cart, addToCart, clearCart, orders, addToOrders, users, addUser, currentUser, loginUser, logoutUser }}>
       {children}
     </MainContext.Provider>
   );

@@ -5,6 +5,7 @@ const buttons = [
   { title: 'Travel', navigateTo: 'Book' },
   { title: 'Cart', navigateTo: 'Cart' },
   { title: 'Profile', navigateTo: 'Profile' },
+  { title: 'Orders', navigateTo: 'Orders' },
   { title: 'Log out', navigateTo: 'Logout' },
 ];
 
