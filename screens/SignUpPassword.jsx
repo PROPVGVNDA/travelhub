@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-export const SignUpPasswordScreen = ({ navigation }) => {
+export const SignUpPasswordScreen = ({ route, navigation }) => {
+    const { userEmail } = route.params;
     const [password, setPassword] = useState('');
     const [passwordVisible, setPasswordVisible] = useState(false);
 
@@ -37,7 +38,7 @@ export const SignUpPasswordScreen = ({ navigation }) => {
             <View style={styles.buttonContainer}>
                 <TouchableOpacity 
                     style={[styles.button, !isPasswordValid() && styles.disabledButton]} 
-                    onPress={() => isPasswordValid() && navigation.navigate('SignUpName')}
+                    onPress={() => isPasswordValid() && navigation.navigate('SignUpName', {userEmail: userEmail, userPassword: password})}
                     disabled={!isPasswordValid()}
                 >
                     <Text style={styles.buttonText}>Next</Text>

@@ -1,13 +1,26 @@
-import React from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import React, { useContext } from 'react';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { User } from '../User.js';
+import { MainContext } from '../MainContext.js';
 
-export const SignUpFinishScreen = ({ navigation }) => {
+export const SignUpFinishScreen = ({ route, navigation }) => {
+  const { userEmail, userPassword, userFullName } = route.params;
+  const { addUser } = useContext(MainContext);
+
+  const handleSignUp = () => {
+    const newUser = new User(
+      userFullName, userEmail, userPassword
+    );
+    addUser(newUser);
+    navigation.navigate('Home');
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.notice}>
         <Text style={styles.titleNotice}>You're all set!</Text>
         <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText} onPress={() => navigation.navigate('Home')}>Continue</Text>
+          <Text style={styles.buttonText} onPress={handleSignUp}>Continue</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -17,7 +30,7 @@ export const SignUpFinishScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#151515', // Black background
+    backgroundColor: '#151515',
     alignItems: 'flex-start',
     paddingHorizontal: 20,
     paddingTop: 70

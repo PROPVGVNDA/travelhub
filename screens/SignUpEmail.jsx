@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 
 export const SignUpEmailScreen = ({ navigation }) => {
@@ -26,7 +26,7 @@ export const SignUpEmailScreen = ({ navigation }) => {
             <View style={styles.buttonContainer}>
                 <TouchableOpacity
                     style={[styles.button, !isValidEmail(email) && styles.disabledButton]}
-                    onPress={() => isValidEmail(email) && navigation.navigate('SignUpPassword')}
+                    onPress={() => isValidEmail(email) && navigation.navigate('SignUpPassword', { userEmail: email })}
                     disabled={!isValidEmail(email)}
                 >
                     <Text style={styles.buttonText}>Next</Text>

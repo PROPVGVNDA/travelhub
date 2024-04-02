@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 
-export const SignUpNameScreen = ({ navigation }) => {
+export const SignUpNameScreen = ({ route, navigation }) => {
+  const { userEmail, userPassword } = route.params;
   const [firstName, setFirstName] = useState('');
   const [middleName, setMiddleName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -10,6 +11,13 @@ export const SignUpNameScreen = ({ navigation }) => {
     return firstName.trim() !== '' && lastName.trim() !== '';
   };
 
+  const getFullName = () => {
+    if (middleName.trim()) {
+      return `${firstName} ${middleName} ${lastName}`;
+    } else {
+      return `${firstName} ${lastName}`;
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -41,7 +49,7 @@ export const SignUpNameScreen = ({ navigation }) => {
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           style={[styles.button, !isValidInput() && styles.disabledButton]}
-          onPress={() => isValidInput() && navigation.navigate('SignUpFinish')}
+          onPress={() => isValidInput() && navigation.navigate('SignUpFinish', {userEmail: userEmail, userPassword: userPassword, userFullName: getFullName()})}
           disabled={!isValidInput()}
         >
           <Text style={styles.buttonText}>Next</Text>
@@ -54,7 +62,7 @@ export const SignUpNameScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#151515', // Black background
+    backgroundColor: '#151515',
     alignItems: 'flex-start',
     paddingTop: 70,
     paddingHorizontal: 20
@@ -64,9 +72,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    color: '#fff', // White text
-    fontSize: 16, // Font size 24
-    fontWeight: 'bold', // Bold font weight
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
     marginBottom: 20
   },
   prompt: {
