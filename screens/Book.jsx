@@ -23,7 +23,7 @@ function generateRandomDouble() {
 
 export const BookScreen = ({ navigation }) => {
   const { addToCart } = useContext(MainContext);
-
+  const { currentUser } = useContext(MainContext);
   const [modalVisible, setModalVisible] = useState(false);
 
   const handleAddToCart = () => {
@@ -145,7 +145,7 @@ export const BookScreen = ({ navigation }) => {
         </TouchableOpacity>
       </View>
       <View style={styles.header}>
-        <Text style={styles.title}>Hello, Mykyta</Text>
+        <Text style={styles.title}>Hello, {currentUser.fullName.split(' ')[0]}</Text>
       </View>
       <Text style={styles.prompt}>Book Your Ticket Today</Text>
       <View style={styles.bookingCard}>

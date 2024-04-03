@@ -24,6 +24,9 @@ export const LoginScreen = ({ navigation }) => {
     setPasswordVisible(!passwordVisible);
   };
 
+  const handleEmailChange = (text) => {
+    setEmail(text.toLowerCase());
+  };
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -39,7 +42,7 @@ export const LoginScreen = ({ navigation }) => {
           style={styles.input}
           placeholder="Enter your email"
           placeholderTextColor="#6a6a6a"
-          onChangeText={setEmail}
+          onChangeText={handleEmailChange}
           value={email}
         />
       </View>

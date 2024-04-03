@@ -7,8 +7,11 @@ export const SignUpEmailScreen = ({ navigation }) => {
 
     const isValidEmail = (email) => {
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return true;
         return regex.test(email);
+    };
+
+    const handleEmailChange = (text) => {
+        setEmail(text.toLowerCase());
     };
 
     return (
@@ -25,7 +28,7 @@ export const SignUpEmailScreen = ({ navigation }) => {
                 style={styles.input}
                 placeholder="Enter your email"
                 placeholderTextColor="#6a6a6a"
-                onChangeText={(text) => setEmail(text)}
+                onChangeText={handleEmailChange}
                 value={email}
             />
             <View style={styles.buttonContainer}>

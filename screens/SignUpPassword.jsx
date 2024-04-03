@@ -12,7 +12,7 @@ export const SignUpPasswordScreen = ({ route, navigation }) => {
     };
 
     const isPasswordValid = () => {
-        return password.length >= 1;
+        return password.length >= 10;
     };
 
     return (
